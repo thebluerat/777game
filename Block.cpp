@@ -23,38 +23,32 @@ void renderText(SDL_Renderer* renderer, const char* text, int x, int y, SDL_Colo
 }
 
 // 블록 초기화
-void initializeBlock(Block block[2][2]) {
-	for (int y = 0; y < 2; y++) {
-		for (int x = 0; x < 2; x++) {
-			int randomIndex = rand() % 8;
-			block[y][x].value = randomIndex;
-			block[y][x].color = COLORS[randomIndex];
-		}
+void initializeBlock(Block block[2]) {
+	for (int i = 0; i < 2; i++) {
+		int randomIndex = rand() % 8;
+		block[i].value = randomIndex;
+		block[i].color = COLORS[randomIndex];
 	}
 }
 
 // 블록 렌더링
-void renderBlock(SDL_Renderer* renderer, Block block[2][2], int x, int y) {
+void renderBlock(SDL_Renderer* renderer, Block block[2], int x, int y) {
 	const int BLOCK_SIZE = 30;
-	for (int by = 0; by < 2; by++) {
-		for (int bx = 0; bx < 2; bx++) {
-			if (block[by][bx].value != 0) {
-				SDL_Color color = block[by][bx].color;
-				SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+	for (int i = 0; i < 2; i++) {
+			SDL_Color color = block[i].color;
+			SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
 
-				SDL_Rect rect = {
-					(x + bx) * BLOCK_SIZE,
-					(y + by) * BLOCK_SIZE,
-					BLOCK_SIZE,
-					BLOCK_SIZE
-				};
-				SDL_RenderFillRect(renderer, &rect);
+			SDL_Rect rect = {
+				x * BLOCK_SIZE,
+				(y + i) * BLOCK_SIZE,
+				BLOCK_SIZE,
+				BLOCK_SIZE
+			};
+			SDL_RenderFillRect(renderer, &rect);
 
-				// 숫자를 텍스트로 렌더링
-				char text[2];
-				sprintf(text, "%d", block[by][bx].value);
-				renderText(renderer, text, rect.x + 10, rect.y + 5, {255,255,255,255});
-			}
-		}
+			// 숫자를 텍스트로 렌더링
+			char text[2];
+			sprintf(text, "%d", block[i].value);
+			renderText(renderer, text, rect.x + 10, rect.y + 5, {255,255,255,255});
 	}
 }

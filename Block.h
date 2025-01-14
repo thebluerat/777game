@@ -22,7 +22,7 @@ const SDL_Color COLORS[] = {
 };
 
 // 함수 선언
-void initializeBlock(Block block[2][2]);
-void renderBlock(SDL_Renderer* renderer, Block block[2][2], int x, int y);
+void initializeBlock(Block block[2]);
+void renderBlock(SDL_Renderer* renderer, Block block[2], int x, int y);
 
 #endif
