@@ -2,6 +2,7 @@
 #define BLOCK_H
 
 #include <SDL2/SDL.h>
+#include "Grid.h"
 
 // 블록 구조체
 struct Block {
