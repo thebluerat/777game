@@ -9,7 +9,7 @@ CXXFLAGS = -lSDL2 -lSDL2_ttf
 TARGET = game
 
 # 소스 파일
-SOURCES = main.cpp Block.cpp
+SOURCES = main.cpp Block.cpp GameOver.cpp
 
 # 기본 규칙
 all: $(TARGET)
